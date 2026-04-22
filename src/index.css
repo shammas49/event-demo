@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --color-maroon: #8B1A1A;
+  --color-maroon-dark: #6B1414;
+  --color-gold: #C8960C;
+  --color-gold-light: #F0B429;
+  --color-ivory: #FAF6EF;
+  --color-sandalwood: #3B2314;
+  --color-white: #FFFFFF;
+
+  --font-playfair: 'Playfair Display', serif;
+  --font-outfit: 'Outfit', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #FAF6EF;
+  color: #3B2314;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FAF6EF; }
+::-webkit-scrollbar-thumb { background: #C8960C; border-radius: 3px; }
+
+/* Gold shimmer keyframe */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 150, 12, 0.6); }
+  50% { box-shadow: 0 0 0 14px rgba(200, 150, 12, 0); }
+}
+
+@keyframes bounce-chevron {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes draw-line {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #C8960C 0%, #F0B429 40%, #fff8e7 50%, #F0B429 60%, #C8960C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2.5s linear infinite;
+}
+
+.pulse-wa {
+  animation: pulse-wa 2s ease-in-out infinite;
+}
+
+.bounce-chevron {
+  animation: bounce-chevron 1.5s ease-in-out infinite;
+}
+
+/* Kerala pattern divider */
+.kerala-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.kerala-divider::before,
+.kerala-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C8960C, transparent);
+}
+
+.kerala-divider-icon {
+  color: #C8960C;
+  font-size: 18px;
+}
+
+/* Kerala border pattern SVG background */
+.kerala-border-top {
+  position: relative;
+}
+
+.kerala-border-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #C8960C 0px,
+    #C8960C 8px,
+    transparent 8px,
+    transparent 14px,
+    #8B1A1A 14px,
+    #8B1A1A 22px,
+    transparent 22px,
+    transparent 28px
+  );
+}
+
+/* Frosted glass navbar */
+.navbar-glass {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(139, 26, 26, 0.92);
+  border-bottom: 1px solid rgba(200, 150, 12, 0.4);
+}
+
+/* Section heading style */
+.section-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C8960C;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #8B1A1A;
+}
+
+/* Card gradient overlay */
+.card-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+}
+
+/* Masonry gallery */
+.gallery-grid {
+  columns: 4 280px;
+  column-gap: 12px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    columns: 2 150px;
+  }
+}
+
+/* Ken Burns animation for hero fallback image */
+@keyframes kenBurns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.hero-fallback {
+  animation: kenBurns 8s ease-in-out infinite alternate;
+}
+
+/* Shake animation for booking form validation error */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-8px); }
+  30%       { transform: translateX(8px); }
+  45%       { transform: translateX(-6px); }
+  60%       { transform: translateX(6px); }
+  75%       { transform: translateX(-3px); }
+  90%       { transform: translateX(3px); }
+}
+
+.shake-form {
+  animation: shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Mobile: modal bottom sheet */
+@media (max-width: 640px) {
+  .booking-modal-sheet {
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+    max-height: 95vh !important;
+  }
+}
